@@ -7,7 +7,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'acrmediaprod-connection'
-  imageRepository: 'dev-askprobes-repo'
+  imageRepository: 'dev-aksprobes-repo'
   containerRegistry: 'acrmediaprodwestus3.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   #tag: 'v1'
