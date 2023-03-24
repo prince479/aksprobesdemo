@@ -20,17 +20,17 @@ spec:
     spec:
       containers:
       - name: dev-aksprobes-webapp
-        image: acrmediaprodwestus3.azurecr.io/dev-kjk-repo:($tagsdsd)
+        image: acrmediaprodwestus3.azurecr.io/dev-aksprobes-repo:($tagsdsd)
         imagePullPolicy: Always
         readinessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 80
           initialDelaySeconds: 15
           periodSeconds: 20
