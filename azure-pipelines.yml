@@ -1,4 +1,3 @@
-
 trigger:
 - master
 
@@ -7,14 +6,51 @@ pool: aks-prod-pool
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'acrmedianonprod-connection'
-  imageRepository: 'dev-test-repo'
-  containerRegistry: 'acrmediawestus3.azurecr.io'
-  dockerfilePath: '**/src/Dockerfile'
+  dockerRegistryServiceConnection: 'acrmediaprod-connection'
+  imageRepository: 'dev-askprobes-repo'
+  containerRegistry: 'acrmediaprodwestus3.azurecr.io'
+  dockerfilePath: '**/Dockerfile'
+  #tag: 'v1'
   tag: '$(Build.BuildId)'
 
 
+stages:
 
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool: aks-prod-pool
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: 'acrmediaprod-connection'
+        tags: |
+          $(tag)
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
 
-
-
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    pool: aks-prod-pool
+    environment: 'Private-Aks-dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: KubernetesManifest@0
+            inputs:
+             action: 'deploy'
+             namespace: 'default'
+             kubernetesServiceConnection: 'aks-media-prod-conn'
+             manifests: |
+                **/manifests/dev-deploy.yml
+             containers: |
+                $(containerRegistry)/$(imageRepository):$(tag)
