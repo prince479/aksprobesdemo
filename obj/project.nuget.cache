@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "4Uqi5BnexehBDfyqTHWaef8Voe22pJHGMVAav5A81AgIGxYuCI6TobC4EuxA1aqnrBc4ut2f5vXC8K8SDEf+VQ==",
+  "success": true,
+  "projectFilePath": "D:\\ingeno-migration\\ImagetotextWeb\\ImagetotextWeb.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Prince Sharma\\.nuget\\packages\\microsoft.cognitiveservices.speech\\1.26.0\\microsoft.cognitiveservices.speech.1.26.0.nupkg.sha512"
+  ],
+  "logs": []
+}

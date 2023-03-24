@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<p>Upload File</p>
+<div class="form-group">
+    <input type="file" name="file"  id="FileUpload1" />
+    <input type="button" onclick="uploadfile()" value="Upload"/>
+</div>
+
+<script>
+    function uploadfile(){
+        console.log("clicked");
+
+        var fileUpload = $("#FileUpload1").get(0);
+        var files = fileUpload.files;
+
+        // Create FormData object
+        var fileData = new FormData();
+
+        // Looping over all files and add it to FormData object
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
+        }
+
+        $.ajax({
+        url: '/Home/FileUpload',
+        type: "POST",
+        contentType: false, // Not to set any content header
+        processData: false, // Not to process data
+        data: fileData,
+        success: function (result) {
+            alert(result.convertedspeech);
+            //$("#speech").text=result.convertedspeech;
+        },
+        error: function (err) {
+            alert(err.statusText);
+        }
+        });
+
+    }
+    
+</script>
+
