@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: dev-aksprobes-webapp
-        image: acrmediaprodwestus3.azurecr.io/dev-aksprobes-repo:($tagsd)
+        image: acrmediaprodwestus3.azurecr.io/dev-aksprobes-repo:($tagsdsd)
         imagePullPolicy: Always
         readinessProbe:
           httpGet:
