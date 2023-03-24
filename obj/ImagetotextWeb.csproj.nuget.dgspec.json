@@ -42,6 +42,10 @@
             "Microsoft.CognitiveServices.Speech": {
               "target": "Package",
               "version": "[1.26.0, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.17.0, )"
             }
           },
           "imports": [
