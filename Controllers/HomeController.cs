@@ -32,7 +32,6 @@ namespace ImagetotextWeb.Controllers
 
                 speechConfig.SetProperty(PropertyId.Speech_SegmentationSilenceTimeoutMs, "1000");  //silence duration
                 var audioConfig = AudioConfig.FromWavFileInput(v);
-                AudioConfig.From
                 using var speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
                 Console.WriteLine("Reading audio file ...");
                 speechRecognizer.Recognizing += (s, e) =>
