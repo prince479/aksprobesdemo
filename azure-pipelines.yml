@@ -1,0 +1,20 @@
+
+trigger:
+- master
+
+pool: aks-prod-pool
+
+variables:
+
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'acrmedianonprod-connection'
+  imageRepository: 'dev-test-repo'
+  containerRegistry: 'acrmediawestus3.azurecr.io'
+  dockerfilePath: '**/src/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+
+
+
+
+
